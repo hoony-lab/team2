@@ -2,8 +2,9 @@ package team.domain;
 
 import team.domain.*;
 import team.infra.AbstractEvent;
-import lombok.*;
 import java.util.*;
+import lombok.*;
+
 @Data
 @ToString
 public class ReviewRegistered extends AbstractEvent {
@@ -13,8 +14,12 @@ public class ReviewRegistered extends AbstractEvent {
     private Long customerId;
     private String content;
 
-// keep
+    public ReviewRegistered(Review aggregate){
+        super(aggregate);
+    }
+    public ReviewRegistered(){
+        super();
+    }
+    // keep
 
 }
-
-

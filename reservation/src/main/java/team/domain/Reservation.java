@@ -102,6 +102,8 @@ public class Reservation  {
         Reservation reservation = new Reservation();
         repository().save(reservation);
 
+        Reserved reserved = new Reserved(reservation);
+        reserved.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -111,6 +113,8 @@ public class Reservation  {
             reservation // do something
             repository().save(reservation);
 
+            Reserved reserved = new Reserved(reservation);
+            reserved.publishAfterCommit();
 
          });
         */
@@ -123,6 +127,8 @@ public class Reservation  {
         Reservation reservation = new Reservation();
         repository().save(reservation);
 
+        Canceled canceled = new Canceled(reservation);
+        canceled.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -132,6 +138,8 @@ public class Reservation  {
             reservation // do something
             repository().save(reservation);
 
+            Canceled canceled = new Canceled(reservation);
+            canceled.publishAfterCommit();
 
          });
         */

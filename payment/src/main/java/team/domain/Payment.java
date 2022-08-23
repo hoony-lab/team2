@@ -76,6 +76,8 @@ public class Payment  {
         Payment payment = new Payment();
         repository().save(payment);
 
+        PaymentCanceled paymentCanceled = new PaymentCanceled(payment);
+        paymentCanceled.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -85,6 +87,8 @@ public class Payment  {
             payment // do something
             repository().save(payment);
 
+            PaymentCanceled paymentCanceled = new PaymentCanceled(payment);
+            paymentCanceled.publishAfterCommit();
 
          });
         */
