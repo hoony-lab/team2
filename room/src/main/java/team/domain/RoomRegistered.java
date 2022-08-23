@@ -10,10 +10,9 @@ import lombok.*;
 public class RoomRegistered extends AbstractEvent {
 
     private Long id;
-    private String status;
-    private String reviewCnt;
-    private Double price;
     private Long reservationId;
+    private String status;
+    private Double price;
     private Long reviewCnt;
 
     public RoomRegistered(Room aggregate){

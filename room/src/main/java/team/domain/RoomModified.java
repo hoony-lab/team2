@@ -10,9 +10,10 @@ import lombok.*;
 public class RoomModified extends AbstractEvent {
 
     private Long id;
+    private Long reservationId;
     private String status;
-    private String reviewCnt;
     private Double price;
+    private Long reviewCnt;
 
     public RoomModified(Room aggregate){
         super(aggregate);
