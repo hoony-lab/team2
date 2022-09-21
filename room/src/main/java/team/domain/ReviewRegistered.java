@@ -1,9 +1,9 @@
 package team.domain;
 
-import team.domain.*;
-import team.infra.AbstractEvent;
 import java.util.*;
 import lombok.*;
+import team.domain.*;
+import team.infra.AbstractEvent;
 
 @Data
 @ToString
@@ -14,10 +14,11 @@ public class ReviewRegistered extends AbstractEvent {
     private Long customerId;
     private String content;
 
-    public ReviewRegistered(Review aggregate){
+    public ReviewRegistered(Review aggregate) {
         super(aggregate);
     }
-    public ReviewRegistered(){
+
+    public ReviewRegistered() {
         super();
     }
     // keep
