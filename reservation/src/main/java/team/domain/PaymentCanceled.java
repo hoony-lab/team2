@@ -1,21 +1,28 @@
 package team.domain;
 
+import java.util.*;
+import lombok.*;
 import team.domain.*;
 import team.infra.AbstractEvent;
-import lombok.*;
-import java.util.*;
+
 @Data
 @ToString
 public class PaymentCanceled extends AbstractEvent {
 
     private Long id;
-    private Long reservationId;
-    private Integer paymentAmount;
-    private Date paymentDate;
-    private String paymentStatus;
+    private Long roomId;
+    private Long paymentId;
+    private Long customerId;
+    private Date reserveDate;
+    private String reserveStatus;
 
-// keep
+    public PaymentCanceled(Reservation aggregate) {
+        super(aggregate);
+    }
+
+    public PaymentCanceled() {
+        super();
+    }
+    // keep
 
 }
-
-

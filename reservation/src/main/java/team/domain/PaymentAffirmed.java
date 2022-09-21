@@ -1,12 +1,13 @@
 package team.domain;
 
+import java.util.*;
+import lombok.*;
 import team.domain.*;
 import team.infra.AbstractEvent;
-import lombok.*;
-import java.util.*;
+
 @Data
 @ToString
-public class Reserved extends AbstractEvent {
+public class PaymentAffirmed extends AbstractEvent {
 
     private Long id;
     private Long roomId;
@@ -15,8 +16,13 @@ public class Reserved extends AbstractEvent {
     private Date reserveDate;
     private String reserveStatus;
 
-// keep
+    public PaymentAffirmed(Reservation aggregate) {
+        super(aggregate);
+    }
+
+    public PaymentAffirmed() {
+        super();
+    }
+    // keep
 
 }
-
-

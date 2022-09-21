@@ -1,62 +1,36 @@
 package team.domain;
 
-import team.MessageApplication;
-import javax.persistence.*;
-import java.util.List;
-import lombok.Data;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+import team.MessageApplication;
 
 @Entity
-@Table(name="Message_table")
+@Table(name = "Message_table")
 @Data
+public class Message {
 
-public class Message  {
-
-    
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
-    
-    
-    
+
     private Integer reservationId;
-    
-    
-    
-    
-    
+
     private Date messageDate;
-    
-    
-    
-    
-    
+
     private String messageContents;
-    
-    
-    
-    
-    
+
     private String messageStatus;
 
-
-    public static MessageRepository repository(){
-        MessageRepository messageRepository = MessageApplication.applicationContext.getBean(MessageRepository.class);
+    public static MessageRepository repository() {
+        MessageRepository messageRepository = MessageApplication.applicationContext.getBean(
+            MessageRepository.class
+        );
         return messageRepository;
     }
 
-
-
-
-    public static void sendReservationMessage(Reserved reserved){
-
+    public static void sendReservationMessage(PaymentAffirmed paymentAffirmed) {
         /** Example 1:  new item 
         Message message = new Message();
         repository().save(message);
@@ -65,7 +39,7 @@ public class Message  {
 
         /** Example 2:  finding and process
         
-        repository().findById(reserved.get???()).ifPresent(message->{
+        repository().findById(paymentAffirmed.get???()).ifPresent(message->{
             
             message // do something
             repository().save(message);
@@ -74,10 +48,11 @@ public class Message  {
          });
         */
 
-        
     }
-    public static void sendCancelReservationMessage(Canceled canceled){
 
+    public static void sendCancelReservationMessage(
+        PaymentCanceled paymentCanceled
+    ) {
         /** Example 1:  new item 
         Message message = new Message();
         repository().save(message);
@@ -86,7 +61,7 @@ public class Message  {
 
         /** Example 2:  finding and process
         
-        repository().findById(canceled.get???()).ifPresent(message->{
+        repository().findById(paymentCanceled.get???()).ifPresent(message->{
             
             message // do something
             repository().save(message);
@@ -95,8 +70,5 @@ public class Message  {
          });
         */
 
-        
     }
-
-
 }

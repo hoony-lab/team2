@@ -1,101 +1,66 @@
 package team.domain;
 
-import team.domain.RoomRegistered;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
+import lombok.Data;
+import team.RoomApplication;
 import team.domain.RoomAffirmed;
 import team.domain.RoomCancled;
-import team.domain.RoomModified;
 import team.domain.RoomDeleted;
-import team.RoomApplication;
-import javax.persistence.*;
-import java.util.List;
-import lombok.Data;
-import java.util.Date;
+import team.domain.RoomModified;
 
 @Entity
-@Table(name="Room_table")
+@Table(name = "Room_table")
 @Data
+public class Room {
 
-public class Room  {
-
-    
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    
-    
-    
-    
+
     private Long reservationId;
-    
-    
-    
-    
-    
+
     private String status;
-    
-    
-    
-    
-    
+
     private Double price;
-    
-    
-    
-    
-    
+
     private Long reviewCnt;
 
     @PostPersist
-    public void onPostPersist(){
-
-
-        RoomRegistered roomRegistered = new RoomRegistered(this);
-        roomRegistered.publishAfterCommit();
-
-
-
+    public void onPostPersist() {
         RoomAffirmed roomAffirmed = new RoomAffirmed(this);
         roomAffirmed.publishAfterCommit();
 
-
-
         RoomCancled roomCancled = new RoomCancled(this);
         roomCancled.publishAfterCommit();
-
     }
+
     @PreUpdate
-    public void onPreUpdate(){
-
-
+    public void onPreUpdate() {
         RoomModified roomModified = new RoomModified(this);
         roomModified.publishAfterCommit();
-
     }
+
     @PreRemove
-    public void onPreRemove(){
-
-
+    public void onPreRemove() {
         RoomDeleted roomDeleted = new RoomDeleted(this);
         roomDeleted.publishAfterCommit();
-
     }
 
-    public static RoomRepository repository(){
-        RoomRepository roomRepository = RoomApplication.applicationContext.getBean(RoomRepository.class);
+    public static RoomRepository repository() {
+        RoomRepository roomRepository = RoomApplication.applicationContext.getBean(
+            RoomRepository.class
+        );
         return roomRepository;
     }
 
+    public void registerRoom() {
+        RoomRegistered roomRegistered = new RoomRegistered(this);
+        roomRegistered.publishAfterCommit();
+    }
 
-
-
-    public static void updateReviewCnt(ReviewRegistered reviewRegistered){
-
+    public static void updateReviewCnt(ReviewRegistered reviewRegistered) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -113,10 +78,9 @@ public class Room  {
          });
         */
 
-        
     }
-    public static void updateReviewCnt(ReviewDeleted reviewDeleted){
 
+    public static void updateReviewCnt(ReviewDeleted reviewDeleted) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -134,10 +98,9 @@ public class Room  {
          });
         */
 
-        
     }
-    public static void affirmRoom(Reserved reserved){
 
+    public static void affirmRoom(PaymentAffirmed paymentAffirmed) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -148,7 +111,7 @@ public class Room  {
 
         /** Example 2:  finding and process
         
-        repository().findById(reserved.get???()).ifPresent(room->{
+        repository().findById(paymentAffirmed.get???()).ifPresent(room->{
             
             room // do something
             repository().save(room);
@@ -159,10 +122,9 @@ public class Room  {
          });
         */
 
-        
     }
-    public static void cancelRoom(Canceled canceled){
 
+    public static void cancelRoom(PaymentCanceled paymentCanceled) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -173,7 +135,7 @@ public class Room  {
 
         /** Example 2:  finding and process
         
-        repository().findById(canceled.get???()).ifPresent(room->{
+        repository().findById(paymentCanceled.get???()).ifPresent(room->{
             
             room // do something
             repository().save(room);
@@ -184,8 +146,5 @@ public class Room  {
          });
         */
 
-        
     }
-
-
 }

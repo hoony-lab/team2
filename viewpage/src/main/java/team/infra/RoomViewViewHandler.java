@@ -1,27 +1,26 @@
 package team.infra;
 
-import team.domain.*;
-import team.config.kafka.KafkaProcessor;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
+import team.config.kafka.KafkaProcessor;
+import team.domain.*;
 
 @Service
 public class RoomViewViewHandler {
-
 
     @Autowired
     private RoomViewRepository roomViewRepository;
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenRoomRegistered_then_CREATE_1 (@Payload RoomRegistered roomRegistered) {
+    public void whenRoomRegistered_then_CREATE_1(
+        @Payload RoomRegistered roomRegistered
+    ) {
         try {
-
             if (!roomRegistered.validate()) return;
 
             // view 객체 생성
@@ -31,26 +30,23 @@ public class RoomViewViewHandler {
             roomView.setRoomStatus(roomRegistered.getStatus());
             // view 레파지 토리에 save
             roomViewRepository.save(roomView);
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void whenReserved_then_UPDATE_1(@Payload Reserved reserved) {
+    public void whenPaymentAffirmed_then_UPDATE_1(
+        @Payload PaymentAffirmed paymentAffirmed
+    ) {
         try {
-            if (!reserved.validate()) return;
-                // view 객체 조회
+            if (!paymentAffirmed.validate()) return;
+            // view 객체 조회
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
     // keep
 
 }
-

@@ -1,11 +1,13 @@
 package team.domain;
 
+import java.util.*;
+import lombok.*;
+import team.domain.*;
 import team.infra.AbstractEvent;
-import lombok.Data;
-import java.util.Date;
 
 @Data
-public class Reserved extends AbstractEvent {
+@ToString
+public class ReservationRequested extends AbstractEvent {
 
     private Long id;
     private Long roomId;
@@ -13,4 +15,6 @@ public class Reserved extends AbstractEvent {
     private Long customerId;
     private Date reserveDate;
     private String reserveStatus;
+    // keep
+
 }
