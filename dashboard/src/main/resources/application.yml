@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: reservation
+    name: dashboard
 ---
 
 spring:
@@ -27,7 +27,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: reservation
+          group: dashboard
           destination: team
           contentType: application/json
         event-out:
@@ -39,12 +39,9 @@ logging:
     org.hibernate.type: trace
     org.springframework.cloud: debug
 
-api:
-  url:
-    payment: localhost:8083
 
 server:
-  port: 8082
+  port: 8085
 
 ---
 
@@ -65,14 +62,11 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: reservation
+          group: dashboard
           destination: team
           contentType: application/json
         event-out:
           destination: team
           contentType: application/json
 
-api:
-  url:
-    payment: payment:8080
 

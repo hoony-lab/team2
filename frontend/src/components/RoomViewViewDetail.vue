@@ -7,13 +7,28 @@
 
         <v-card-text>
             <div>
+                <Number label="RoomId" v-model="item.roomId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="ReservationId" v-model="item.reservationId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="PaymentId" v-model="item.paymentId" :editMode="editMode" @change="change" />
+            </div>
+            <div>
                 <String label="RoomStatus" v-model="item.roomStatus" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <Number label="RoomPrice" v-model="item.roomPrice" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <Number label="ReviewCnt" v-model="item.reviewCnt" :editMode="editMode" @change="change" />
             </div>
             <div>
                 <String label="ReservationStatus" v-model="item.reservationStatus" :editMode="editMode" @change="change" />
+            </div>
+            <div>
+                <String label="PayStatus" v-model="item.payStatus" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
     </v-card>

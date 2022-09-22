@@ -8,18 +8,26 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: order
+        - id: room
           uri: http://localhost:8081
           predicates:
-            - Path=, 
-        - id: store
+            - Path=/rooms/**, /reviews/**, 
+        - id: reservation
           uri: http://localhost:8082
           predicates:
-            - Path=, 
-        - id: rider
+            - Path=/reservations/**, 
+        - id: payment
           uri: http://localhost:8083
           predicates:
-            - Path=, 
+            - Path=/payments/**, 
+        - id: message
+          uri: http://localhost:8084
+          predicates:
+            - Path=/messages/**, 
+        - id: dashboard
+          uri: http://localhost:8085
+          predicates:
+            - Path=, /roomViews/**
         - id: frontend
           uri: http://localhost:8080
           predicates:
@@ -43,18 +51,26 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: order
-          uri: http://order:8080
+        - id: room
+          uri: http://room:8080
           predicates:
-            - Path=, 
-        - id: store
-          uri: http://store:8080
+            - Path=/rooms/**, /reviews/**, 
+        - id: reservation
+          uri: http://reservation:8080
           predicates:
-            - Path=, 
-        - id: rider
-          uri: http://rider:8080
+            - Path=/reservations/**, 
+        - id: payment
+          uri: http://payment:8080
           predicates:
-            - Path=, 
+            - Path=/payments/**, 
+        - id: message
+          uri: http://message:8080
+          predicates:
+            - Path=/messages/**, 
+        - id: dashboard
+          uri: http://dashboard:8080
+          predicates:
+            - Path=, /roomViews/**
         - id: frontend
           uri: http://frontend:8080
           predicates:

@@ -22,9 +22,14 @@
         data: () => ({
             headers: [
                 { text: "id", value: "id" },
+                { text: "roomId", value: "roomId" },
+                { text: "reservationId", value: "reservationId" },
+                { text: "paymentId", value: "paymentId" },
                 { text: "roomStatus", value: "roomStatus" },
+                { text: "roomPrice", value: "roomPrice" },
                 { text: "reviewCnt", value: "reviewCnt" },
                 { text: "reservationStatus", value: "reservationStatus" },
+                { text: "payStatus", value: "payStatus" },
             ],
             roomView : [],
         }),

@@ -9,6 +9,7 @@ import team.domain.RoomAffirmed;
 import team.domain.RoomCancled;
 import team.domain.RoomDeleted;
 import team.domain.RoomModified;
+import team.domain.RoomRegistered;
 
 @Entity
 @Table(name = "Room_table")
@@ -29,6 +30,9 @@ public class Room {
 
     @PostPersist
     public void onPostPersist() {
+        RoomRegistered roomRegistered = new RoomRegistered(this);
+        roomRegistered.publishAfterCommit();
+
         RoomAffirmed roomAffirmed = new RoomAffirmed(this);
         roomAffirmed.publishAfterCommit();
 
@@ -53,11 +57,6 @@ public class Room {
             RoomRepository.class
         );
         return roomRepository;
-    }
-
-    public void registerRoom() {
-        RoomRegistered roomRegistered = new RoomRegistered(this);
-        roomRegistered.publishAfterCommit();
     }
 
     public static void updateReviewCnt(ReviewRegistered reviewRegistered) {
@@ -100,7 +99,7 @@ public class Room {
 
     }
 
-    public static void affirmRoom(PaymentAffirmed paymentAffirmed) {
+    public static void affirmRoom(ReservationAffirmed reservationAffirmed) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -111,7 +110,7 @@ public class Room {
 
         /** Example 2:  finding and process
         
-        repository().findById(paymentAffirmed.get???()).ifPresent(room->{
+        repository().findById(reservationAffirmed.get???()).ifPresent(room->{
             
             room // do something
             repository().save(room);
@@ -124,7 +123,7 @@ public class Room {
 
     }
 
-    public static void cancelRoom(PaymentCanceled paymentCanceled) {
+    public static void cancelRoom(ReservationCanceled reservationCanceled) {
         /** Example 1:  new item 
         Room room = new Room();
         repository().save(room);
@@ -135,7 +134,7 @@ public class Room {
 
         /** Example 2:  finding and process
         
-        repository().findById(paymentCanceled.get???()).ifPresent(room->{
+        repository().findById(reservationCanceled.get???()).ifPresent(room->{
             
             room // do something
             repository().save(room);

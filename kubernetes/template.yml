@@ -163,22 +163,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: viewpage
+  name: dashboard
   labels:
-    app: viewpage
+    app: dashboard
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: viewpage
+      app: dashboard
   template:
     metadata:
       labels:
-        app: viewpage
+        app: dashboard
     spec:
       containers:
-        - name: viewpage
-          image: username/viewpage:latest
+        - name: dashboard
+          image: username/dashboard:latest
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -273,13 +273,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: viewpage
+  name: dashboard
   labels:
-    app: viewpage
+    app: dashboard
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: viewpage
+    app: dashboard
 

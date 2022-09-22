@@ -24,7 +24,7 @@ spring:
           uri: http://localhost:8084
           predicates:
             - Path=/messages/**, 
-        - id: viewpage
+        - id: dashboard
           uri: http://localhost:8085
           predicates:
             - Path=, /roomViews/**
@@ -67,8 +67,8 @@ spring:
           uri: http://message:8080
           predicates:
             - Path=/messages/**, 
-        - id: viewpage
-          uri: http://viewpage:8080
+        - id: dashboard
+          uri: http://dashboard:8080
           predicates:
             - Path=, /roomViews/**
         - id: frontend
